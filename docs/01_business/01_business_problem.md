@@ -1,8 +1,4 @@
-# Customer Churn Prediction Platform
-
-## Project Brief
-
-### Business Problem
+# Business Problem
 
 The bank is losing valuable customers who contribute significantly to its revenue and long-term profitability. Currently, the bank lacks an effective way to identify customers who are likely to leave before they churn, limiting its ability to take timely retention actions.
 
