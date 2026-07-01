@@ -1,13 +1,19 @@
 # Problem Definition
 
-## 1. Machine Learning Problem Statement
+## 1. Problem Statement
 
-This project aims to develop a supervised machine learning model that predicts whether a customer is likely to churn. The predictions will help the marketing and relationship management teams identify high-risk customers early and prioritize retention efforts, ultimately improving customer retention and business profitability.
+This project aims to develop an end-to-end data-driven customer churn prediction platform that enables the bank to identify customers who are at risk of leaving before they churn.
+
+Rather than predicting only whether a customer will churn, the system will estimate each customer's **probability of churn**, classify customers as **Churn** or **Non-Churn**, and generate a **ranked list of high-risk customers**. This allows Relationship Managers and Marketing Teams to prioritize customers for retention campaigns based on their level of risk.
+
+Beyond prediction, the project also establishes a complete analytics and machine learning workflow, including data engineering, business analytics, feature engineering, model development, explainability, and production deployment to support reliable and scalable decision-making.
 
 ---
 
 ## 2. Problem Type
 
+* **Business Problem:** Customer Retention
+* **Data Science Problem:** Customer Churn Prediction
 * **Machine Learning Type:** Supervised Learning
 * **Learning Task:** Binary Classification
 
@@ -18,54 +24,56 @@ This project aims to develop a supervised machine learning model that predicts w
 * **Target Variable (y):** Churn
 * **Class Labels:**
 
-  * **0:** Non-Churn (Customer stays)
-  * **1:** Churn (Customer leaves)
+  * **0:** Non-Churn (Customer is expected to remain)
+  * **1:** Churn (Customer is expected to leave)
 
 ---
 
 ## 4. Prediction Unit
 
-Each record (row) in the dataset represents **one customer**, and the model predicts whether that customer is likely to churn.
+Each record in the dataset represents a single customer, and the model generates predictions independently for every customer.
 
 ---
 
 ## 5. Input Features
 
-The model will use customer-related information available at prediction time, such as:
+The model will use customer information available before prediction, including but not limited to:
 
 * Customer demographics
 * Account information
-* Product usage
-* Transaction behavior
-* Customer relationship history
+* Banking relationship
+* Product ownership and usage
+* Financial behavior
+* Customer activity
+* Historical interactions
 
-The final list of features will be determined after data exploration.
+The final feature set will be determined through data exploration, business analysis, and feature engineering.
 
 ---
 
 ## 6. Model Output
 
-For each customer, the model will produce:
+For each customer, the system will generate:
 
-* A churn probability (0–1)
-* A predicted class:
+* Churn probability (risk score)
+* Predicted class (Churn / Non-Churn)
+* Customer risk ranking
+* Priority list for retention campaigns
+* Explanation for prediction (key factors and top contributing drivers behind the churn risk score)
 
-  * Churn
-  * Non-Churn
-
-These predictions will be used to prioritize customer retention activities.
+These outputs will support Relationship Managers in identifying and prioritizing customers who should be contacted first.
 
 ---
 
 ## 7. Prediction Frequency
 
-Predictions will be generated once every day at **6:00 AM** using a batch prediction pipeline. The marketing team will use the generated customer risk list to plan daily retention campaigns.
+Predictions will be generated daily through a batch prediction pipeline. The generated customer risk list will support daily retention planning and customer engagement activities.
 
 ---
 
 ## 8. Decision Threshold
 
-The default classification threshold is assumed to be **0.50** for this project. This threshold may be adjusted during model evaluation to achieve the desired balance between Precision and Recall based on business requirements.
+The classification threshold will initially use a default value and may be optimized during model evaluation to achieve an appropriate balance between business objectives and machine learning performance.
 
 ---
 
@@ -73,30 +81,32 @@ The default classification threshold is assumed to be **0.50** for this project.
 
 * Historical labeled customer data is available.
 * Customer records are uniquely identifiable.
-* Input features are available before making predictions.
-* Customer data is updated regularly.
-* Churn labels accurately represent customer behavior.
+* Required input features are available before prediction.
+* Customer information is updated regularly.
+* Historical churn labels accurately represent customer behavior.
 
 ---
 
 ## 10. Edge Cases
 
-The system should consider the following situations:
+The solution should account for situations such as:
 
-* Missing feature values.
-* Duplicate customer records.
-* New customers with limited historical data.
-* Unexpected feature values or invalid data.
-* Data distribution changes over time (data drift).
+* Missing feature values
+* Duplicate customer records
+* New customers with limited historical history
+* Invalid or unexpected input values
+* Changes in customer behavior over time (data drift)
 
 ---
 
 ## 11. Out of Scope
 
-The first version of this project will not include:
+The initial version of this project will not include:
 
-* Real-time prediction.
-* Automatic customer communication.
-* Automatic marketing campaign execution.
-* Continuous online model training.
-* Multi-class churn prediction.
+* Real-time prediction
+* Automated customer communication
+* Automated campaign execution
+* Online model retraining
+* Multi-class churn prediction
+* Customer lifetime value prediction
+* Offer or incentive recommendation
